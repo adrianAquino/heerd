@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('racas', function (Blueprint $table) {
-            $table->id();
+            $table->id('codRaca'); // Chave primária personalizada
+            $table->string('nome', 255);
+            $table->string('tipoRaca', 255);
+            $table->text('descricao');
+            $table->string('origemRaca', 255);
+            $table->enum('raca_status', ['Ativo', 'Inativo'])->default('Ativo'); 
             $table->timestamps();
         });
     }

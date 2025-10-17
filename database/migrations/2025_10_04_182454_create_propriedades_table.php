@@ -12,8 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('propriedades', function (Blueprint $table) {
-            $table->id();
+            $table->id('codPropriedades'); // PK
+            $table->unsignedBigInteger('idProdutores'); // FK
+            $table->string('nome', 255);
+            $table->string('cidade', 255);
+            $table->string('estado', 45);
+            $table->string('estrada_rua', 255); // Corrigido nome da coluna
+            $table->decimal('areaTotal', 10, 3);
+            $table->decimal('latitude', 9, 6);
+            $table->decimal('longitude', 9, 6);
+            $table->integer('quantidadeAnimais');
+            $table->string('responsavelTecnico', 255)->nullable();
+            $table->enum('propriedade_status', ['Ativo', 'Inativo'])->default('Ativo');
             $table->timestamps();
+
+            //  Chave estrangeira
+            $table->foreign('idProdutores')
+                  ->references('id')
+                  ->on('produtors')
+                  ->onDelete('cascade');
         });
     }
 
