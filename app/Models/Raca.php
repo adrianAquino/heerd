@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Raca extends Model
 {
-    use HasFactory;
+    
     
     protected $table = 'racas';
 

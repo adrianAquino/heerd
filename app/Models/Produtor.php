@@ -31,6 +31,6 @@ class Produtor extends Model
     // Um produtor pode ter várias propriedades
     public function propriedades()
     {
-        return $this->hasMany(Propriedade::class, 'idProdutores');
+        return $this->hasMany(Propriedade::class, 'idProdutores', 'codProdutores');
     }
 }
