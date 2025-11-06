@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('produtores', function (Blueprint $table) {
-            $table->id();
-            $table->integer('codProdutores')->unique(); // Código próprio do produtor
+            $table->id('codProdutores')->unique();
             $table->string('nome', 255);
             $table->string('CPF', 20)->unique();
             $table->date('dataNascimento');

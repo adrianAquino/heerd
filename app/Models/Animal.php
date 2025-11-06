@@ -22,7 +22,7 @@ class Animal extends Model
         'origem',
         'situacaoReprodutiva',
         'nomePai',
-        'nomePai',
+        'nomeMae',
         'valorMercadoAtual',
         'situacaoComercial',
         'animal_status'
@@ -33,7 +33,7 @@ class Animal extends Model
     }
 
     public function  propriedade(){
-        return $this->belongsTo(Propriedade::class, 'idPropriedades', 'codPropriedade');
+        return $this->belongsTo(Propriedade::class, 'idPropriedades', 'codPropriedades');
     }
 
     public function itensdolote() {

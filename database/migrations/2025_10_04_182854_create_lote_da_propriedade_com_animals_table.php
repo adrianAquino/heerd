@@ -7,21 +7,44 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Executa a criação da tabela 'loteDaPropriedadeComAnimais'.
      */
     public function up(): void
     {
-        Schema::create('lote_da_propriedade_com_animals', function (Blueprint $table) {
-            $table->id();
+        Schema::create('loteDaPropriedadeComAnimais', function (Blueprint $table) {
+            // Chave primária
+            $table->id('codLoteDaPropriedadeAnimais');
+
+            // Chave estrangeira -> propriedade
+            $table->unsignedBigInteger('idPropriedade')->nullable();
+
+            // Demais campos
+            $table->string('nome', 100);
+            $table->date('dataCriacao')->nullable();
+            $table->string('finalidadeLote', 150)->nullable();
+            $table->integer('quantidadeAnimais')->default(0);
+            $table->string('localizacaoLote', 150)->nullable();
+            $table->string('racaPredominante', 100)->nullable();
+            $table->boolean('loteDaPropriedadeAnimais_status')->default(true);
+
+            // Campos automáticos do Laravel
             $table->timestamps();
+
+            // Definição da foreign key
+            $table->foreign('idPropriedade')
+                  ->references('codPropriedades')
+                  ->on('propriedades')
+                  ->onDelete('set null')
+                  ->onUpdate('cascade');
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverte a criação da tabela.
      */
     public function down(): void
     {
-        Schema::dropIfExists('lote_da_propriedade_com_animals');
+        Schema::dropIfExists('loteDaPropriedadeComAnimais');
     }
 };
+
