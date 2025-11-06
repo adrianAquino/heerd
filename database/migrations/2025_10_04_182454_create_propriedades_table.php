@@ -28,8 +28,8 @@ return new class extends Migration
 
             //  Chave estrangeira
             $table->foreign('idProdutores')
-                  ->references('id')
-                  ->on('produtors')
+                  ->references('codProdutores')
+                  ->on('produtores')
                   ->onDelete('cascade');
         });
     }
